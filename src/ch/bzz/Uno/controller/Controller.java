@@ -30,7 +30,6 @@ public class Controller {
     }
 
     public void hasPressedNext() {
-
         if (field.getCurrentlyPlaying().getHand().size() == 1) {
             if (validator.getUnoStatus()) {
                 field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
@@ -41,6 +40,8 @@ public class Controller {
                 field.drawCard();
                 field.drawCard();
             }
+        }else{
+            field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
         }
     }
 

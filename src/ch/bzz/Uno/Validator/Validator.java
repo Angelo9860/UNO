@@ -11,7 +11,9 @@ public class Validator {
     private boolean unoStatus;
 
     public boolean checkCard(Card toLayDownCard, Card onStackCard) {
-            cardIsValid(toLayDownCard, onStackCard);
+            if(cardIsValid(toLayDownCard, onStackCard)){
+
+            }
         return false;
     }
 
@@ -20,11 +22,10 @@ public class Validator {
     }
 
 
-    public boolean checkAction(Card toLayDownCard) {
+    /*public int checkAction(Card toLayDownCard) {
         int action = toLayDownCard.getAction();
         if (action == 1) {
-            //+2
-            return true;
+            return 2;
         }
 
         if (action == 2) {
@@ -41,20 +42,19 @@ public class Validator {
         }
         if (action == 5) {
             //+2
-            return true;
+            return 4;
         }
         else if(!(toLayDownCard.getAction() == 1 && toLayDownCard.getAction() == 2 && toLayDownCard.getAction() == 3 && toLayDownCard.getAction() == 4 && toLayDownCard.getAction() == 5)){
             return false;
         }
         return false;
-    }
+    }*/
 
     public boolean cardIsValid(Card toLayDownCard, Card onStackCard) {
         if(toLayDownCard.getColor() == onStackCard.getColor() || toLayDownCard.getValue().equals(onStackCard.getValue())){
             return true;
         }else{
-            checkAction(toLayDownCard);
-
+           // checkAction(toLayDownCard);
         }
         return false;
     }
