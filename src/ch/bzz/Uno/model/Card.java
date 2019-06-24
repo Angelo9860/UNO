@@ -2,17 +2,18 @@ package ch.bzz.Uno.model;
 
 import java.awt.*;
 
-public class ColorCard {
+public class Card {
     private String value;
     private boolean isActionCard;
     private Color color;
+    private int action;
 
-    public ColorCard(String value, boolean isActionCard, Color color){
+    public Card(String value, boolean isActionCard, Color color, int action) {
         this.value = value;
         this.isActionCard = isActionCard;
         this.color = color;
+        this.action = action;
     }
-
 
 
     public String getValue() {
@@ -39,8 +40,9 @@ public class ColorCard {
         this.color = color;
     }
 
-
-
+    public int getAction() {
+        return action;
+    }
 
 
 }

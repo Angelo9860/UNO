@@ -3,10 +3,10 @@ package ch.bzz.Uno.model;
 
 import java.awt.*;
 
-public class ActionCard extends ColorCard {
+public class ActionCard {
 
 
-    private static int ACTION;
+ /*   private static int ACTION;
 
     public ActionCard(String value, boolean isActionCard, Color color, int action) {
         super(value, isActionCard, color);
@@ -16,5 +16,5 @@ public class ActionCard extends ColorCard {
 
     public static int getACTION() {
         return ACTION;
-    }
+    }*/
 }
