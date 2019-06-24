@@ -8,15 +8,15 @@ import java.util.ArrayList;
 
 public class GenerateStack {
 
-    private ArrayList<Card> stack;
+    private static ArrayList<Card> stack;
 
-    public ArrayList<Card> generateStack() {
+    public static ArrayList<Card> generateStack() {
         generateCards();
         generateActionCards();
         return stack;
     }
 
-    private void generateCards() {
+    private static void generateCards() {
         for (int i = 0; i < 10; i++) {
             Card card = new Card(String.valueOf(i), false, Color.blue, 0);
             stack.add(card);
@@ -52,7 +52,7 @@ public class GenerateStack {
 
     }
 
-    private void generateActionCards() {
+    private static void generateActionCards() {
         stack.add(new Card("+2", false, Color.green, 1));
         stack.add(new Card("+2", false, Color.green, 1));
         stack.add(new Card("+2", false, Color.blue, 1));
