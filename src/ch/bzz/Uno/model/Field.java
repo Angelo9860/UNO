@@ -1,9 +1,8 @@
 package ch.bzz.Uno.model;
 
-
-import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.util.ShuffleDeck;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Field {
@@ -11,8 +10,11 @@ public class Field {
     private ArrayList<Card> stack;
     private ArrayList<Card> onFieldStack;
     private ArrayList<Player> players;
-    private Player onTurnPlayer;
     private Player currentlyPlaying;
+    private boolean hasWish = false;
+    private Color wishColor;
+    private int drawCards;
+
 
     public Field(ArrayList<Card> stack, ArrayList<Player> players) {
         this.stack = stack;
@@ -52,7 +54,6 @@ public class Field {
         this.players = players;
     }
 
-
     public void setCurrentlyPlaying(Player player) {
         currentlyPlaying = player;
     }
@@ -72,10 +73,6 @@ public class Field {
     public void setPlayer(Player player) {
         player.setId(players.size());
         players.add(player);
-    }
-
-    public void setOnTurnPlayer(Player player) {
-        onTurnPlayer = player;
     }
 
     public void handOutCards() {
