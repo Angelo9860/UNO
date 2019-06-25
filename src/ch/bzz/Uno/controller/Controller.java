@@ -1,5 +1,6 @@
 package ch.bzz.Uno.controller;
 
+import ch.bzz.Uno.Interfaces.ControllerInterface;
 import ch.bzz.Uno.Validator.Validator;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Field;
@@ -8,11 +9,13 @@ import ch.bzz.Uno.util.GenerateStack;
 import ch.bzz.Uno.util.PointsTable;
 
 
-public class Controller {
+public class Controller implements ControllerInterface {
     private Field field;
-    public Validator validator;
+    private Validator validator;
+    private GenerateStack stack = new GenerateStack();
 
-    public Controller() {
+    public Controller(Field field) {
+        this.field = field;
         validator = new Validator();
     }
 
@@ -22,7 +25,7 @@ public class Controller {
     }
 
     public void layDownACard(Card card) {
-        validator.checkCard(card, field.getCurrentCard());
+        setField(validator.checkCard(card, field.getCurrentCard(), field));
     }
 
     public void hasPressedUno() {
@@ -59,14 +62,17 @@ public class Controller {
 
         }
     }
-
+    @Override
     public void addPlayerHasBeenPressed(String name){
+
         Player player = new Player(name);
+        System.out.println(player.getUserName());
         field.setPlayer(player);
+        System.out.println("In the list" +field.getPlayers().get(0).getUserName());
     }
 
     public void startGameHasBeenPressed(){
-        field.setStack(GenerateStack.generateStack());
+        field.setStack(stack.generateStack());
         field.handOutCards();
         field.setFirstCard();
     }
