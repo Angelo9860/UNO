@@ -37,4 +37,7 @@ public class Player {
         return id;
     }
 
+    public String getUserName(){
+        return userName;
+    }
 }

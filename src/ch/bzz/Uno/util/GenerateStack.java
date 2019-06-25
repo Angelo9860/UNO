@@ -1,6 +1,6 @@
 package ch.bzz.Uno.util;
 
-import ch.bzz.Uno.model.ActionCard;
+
 import ch.bzz.Uno.model.Card;
 
 import java.awt.*;
@@ -8,15 +8,17 @@ import java.util.ArrayList;
 
 public class GenerateStack {
 
-    private static ArrayList<Card> stack;
+    private ArrayList<Card> stack;
 
-    public static ArrayList<Card> generateStack() {
+    public  ArrayList<Card> generateStack() {
+        System.out.println(stack.size());
+
         generateCards();
         generateActionCards();
         return stack;
     }
 
-    private static void generateCards() {
+    private void generateCards() {
         for (int i = 0; i < 10; i++) {
             Card card = new Card(String.valueOf(i), false, Color.blue, 0);
             stack.add(card);
@@ -52,7 +54,7 @@ public class GenerateStack {
 
     }
 
-    private static void generateActionCards() {
+    private void generateActionCards() {
         stack.add(new Card("+2", false, Color.green, 1));
         stack.add(new Card("+2", false, Color.green, 1));
         stack.add(new Card("+2", false, Color.blue, 1));

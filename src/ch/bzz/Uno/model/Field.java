@@ -9,16 +9,16 @@ public class Field {
 
     private ArrayList<Card> stack;
     private ArrayList<Card> onFieldStack;
-    private ArrayList<Player> players;
+    private ArrayList<Player> players = new ArrayList<Player>();
     private Player currentlyPlaying;
     private boolean hasWish = false;
     private Color wishColor;
     private int drawCards;
+    private boolean skip = false;
+    private boolean reverse = false;
 
 
-    public Field(ArrayList<Card> stack, ArrayList<Player> players) {
-        this.stack = stack;
-        this.players = players;
+    public Field() {
     }
 
     //TODO: Not sure if needed.
@@ -98,6 +98,53 @@ public class Field {
     public void setFirstCard() {
         setOnFieldStack(drawCard());
     }
+
+    public void setOnFieldStack(ArrayList<Card> onFieldStack) {
+        this.onFieldStack = onFieldStack;
+    }
+
+    public boolean isHasWish() {
+        return hasWish;
+    }
+
+    public void setHasWish(boolean hasWish) {
+        this.hasWish = hasWish;
+    }
+
+    public Color getWishColor() {
+        return wishColor;
+    }
+
+    public void setWishColor(Color wishColor) {
+        this.wishColor = wishColor;
+    }
+
+    public int getDrawCards() {
+        return drawCards;
+    }
+
+    public void setDrawCards(int drawCards) {
+        this.drawCards = drawCards;
+    }
+
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+
+    public boolean isReverse() {
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
+    }
+
+
+
 }
 
 
