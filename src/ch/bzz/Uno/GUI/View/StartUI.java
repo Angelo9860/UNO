@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class StartUI extends JFrame {
     private JTextField playerName = new JTextField();
     private JButton addPlayer = new JButton("AddPlayer");
+    private JButton startGame = new JButton("Start Game");
     private StartUIController controller = new StartUIController();
     public StartUI(){
         super("Uno");
@@ -28,14 +29,27 @@ public class StartUI extends JFrame {
                 addPlayerHasBeenPressed();
             }
         });
+        startGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startGameHasBeenPressed();
+            }
+        });
         add(playerName, BorderLayout.SOUTH);
         add(addPlayer, BorderLayout.EAST);
+        add(startGame, BorderLayout.NORTH);
         setVisible(true);
     }
 
     public void addPlayerHasBeenPressed(){
         System.out.print("Hello");
         controller.addPlayerHasBeenPressed(playerName.getText());
+
+    }
+
+    public void startGameHasBeenPressed(){
+        System.out.print("Hello");
+        controller.startGameHasBeenPressed();
 
     }
 

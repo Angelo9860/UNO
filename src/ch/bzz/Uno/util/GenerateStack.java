@@ -8,10 +8,9 @@ import java.util.ArrayList;
 
 public class GenerateStack {
 
-    private ArrayList<Card> stack;
+    private ArrayList<Card> stack = new ArrayList<Card>();
 
     public  ArrayList<Card> generateStack() {
-        System.out.println(stack.size());
 
         generateCards();
         generateActionCards();

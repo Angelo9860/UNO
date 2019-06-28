@@ -8,8 +8,12 @@ import ch.bzz.Uno.model.Player;
 import ch.bzz.Uno.util.GenerateStack;
 import ch.bzz.Uno.util.PointsTable;
 
+import java.util.ArrayList;
+
 
 public class Controller implements ControllerInterface {
+    private int playersPlaying = 0;
+    private int playerPlaying = 0;
     private Field field;
     private Validator validator;
     private GenerateStack stack = new GenerateStack();
@@ -18,24 +22,30 @@ public class Controller implements ControllerInterface {
         this.field = field;
         validator = new Validator();
     }
-
-    public void drawCard() {
+    @Override
+    public void drawCardHasBeenPressed() {
         Player player = field.getCurrentlyPlaying();
         player.setHand(field.drawCard());
     }
+    //TODO:REVALIDATE FUNCTIONALITY
+   public void layDownCardHasBeenPressed(Card card){
+        validator.checkCard(card, field.getCurrentCard(), field);
+   }
 
-    public void layDownACard(Card card) {
-        setField(validator.checkCard(card, field.getCurrentCard(), field));
-    }
-
-    public void hasPressedUno() {
+    public void unoHasBeenPressed() {
         validator.checkUno(field.getCurrentlyPlaying());
     }
 
-    public void hasPressedNext() {
+    public void nextHasBeenPressed() {
         if (field.getCurrentlyPlaying().getHand().size() == 1) {
             if (validator.getUnoStatus()) {
-                field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
+                if(playersPlaying != playerPlaying){
+
+                }else{
+                    playerPlaying = 0;
+                    field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
+                }
+
             } else {
                 //TODO: Check how many cards should be drawn
                 field.drawCard();
@@ -70,10 +80,16 @@ public class Controller implements ControllerInterface {
         field.setPlayer(player);
         System.out.println("In the list" +field.getPlayers().get(0).getUserName());
     }
-
+    @Override
     public void startGameHasBeenPressed(){
-        field.setStack(stack.generateStack());
+        field.setDrawStack(stack.generateStack());
+        ArrayList<Card> stacker= field.getDrawStack();
+        for(int i = 0; i < field.getDrawStack().size(); i++){
+            System.out.println("Action: " + stacker.get(i).getAction() + "\n Value: " +  stacker.get(i).getValue()+ "\n Color: " + stacker.get(i).getColor() + "\n isAction: "+ stacker.get(i).isActionCard());
+        }
+        field.setCurrentlyPlaying(field.getPlayers().get(0));
         field.handOutCards();
+
         field.setFirstCard();
     }
 
