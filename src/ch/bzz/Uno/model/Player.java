@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
     private int id;
-    private ArrayList<Card> hand;
+    private ArrayList<Card> hand = new ArrayList<Card>();
     private String userName;
     private int points;
 
@@ -16,6 +16,10 @@ public class Player {
 
     public void setHand(Card card) {
         hand.add(card);
+    }
+
+    public Card getCard(int id){
+     return hand.get(id);
     }
 
     public void setPoints(int points) {

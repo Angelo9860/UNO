@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Field {
 
-    private ArrayList<Card> stack;
-    private ArrayList<Card> onFieldStack;
+    private ArrayList<Card> drawStack = new ArrayList<Card>();
+    private ArrayList<Card> onFieldStack = new ArrayList<Card>();
     private ArrayList<Player> players = new ArrayList<Player>();
     private Player currentlyPlaying;
     private boolean hasWish = false;
@@ -21,34 +21,24 @@ public class Field {
     public Field() {
     }
 
-    //TODO: Not sure if needed.
-    public ArrayList<Card> getStack() {
-        return stack;
-    }
-
-    public void setStack(ArrayList<Card> stack) {
-        this.stack = stack;
-    }
-
     public Card drawCard() {
         Card card;
-        if (stack.size() != 0) {
-            card = stack.get(0);
-            stack.remove(0);
+        if (drawStack.size() != 0) {
+            card = drawStack.get(0);
+            drawStack.remove(0);
             currentlyPlaying.setHand(card);
             return card;
         } else {
+            Card onFieldStackLastCard = onFieldStack.get(onFieldStack.size()-1);
             setNewOnFieldStack(ShuffleDeck.shuffleDeck(getOnFieldStack()));
-            card = stack.get(0);
-            stack.remove(0);
+            setOnFieldStack(onFieldStackLastCard);
+            card = drawStack.get(0);
+            drawStack.remove(0);
             currentlyPlaying.setHand(card);
             return card;
         }
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
@@ -75,10 +65,15 @@ public class Field {
         players.add(player);
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+
     public void handOutCards() {
         for (int i = 0; i < 8; i++) {
             for (int x = 0; x < players.size(); x++) {
-                players.get(i).setHand(drawCard());
+                players.get(x).setHand(drawCard());
             }
         }
     }
@@ -143,6 +138,14 @@ public class Field {
         this.reverse = reverse;
     }
 
+    //TODO: Not sure if needed.
+    public ArrayList<Card> getDrawStack() {
+        return drawStack;
+    }
+
+    public void setDrawStack(ArrayList<Card> stack) {
+        this.drawStack = stack;
+    }
 
 
 }
