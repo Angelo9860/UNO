@@ -95,6 +95,7 @@ public class StartUI extends JFrame{
 	public void startGameHasBeenPressed(){
 		System.out.print("Hello");
 		controller.startGameHasBeenPressed();
+		Field field = new Field();
 
 	}
 

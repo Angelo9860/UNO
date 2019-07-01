@@ -7,6 +7,7 @@ import ch.bzz.Uno.model.Field;
 import ch.bzz.Uno.model.Player;
 import ch.bzz.Uno.util.GenerateStack;
 import ch.bzz.Uno.util.PointsTable;
+import ch.bzz.Uno.util.ShuffleDeck;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Controller implements ControllerInterface {
     private Field field;
     private Validator validator;
     private GenerateStack stack = new GenerateStack();
-
+    private ShuffleDeck shuffler = new ShuffleDeck();
     public Controller(Field field) {
         this.field = field;
         validator = new Validator();
@@ -82,15 +83,16 @@ public class Controller implements ControllerInterface {
     }
     @Override
     public void startGameHasBeenPressed(){
+        field.setDrawStack(ShuffleDeck.shuffleDeck(stack.generateStack()));
         field.setDrawStack(stack.generateStack());
-        ArrayList<Card> stacker= field.getDrawStack();
-        for(int i = 0; i < field.getDrawStack().size(); i++){
-            System.out.println("Action: " + stacker.get(i).getAction() + "\n Value: " +  stacker.get(i).getValue()+ "\n Color: " + stacker.get(i).getColor() + "\n isAction: "+ stacker.get(i).isActionCard());
-        }
+        ArrayList<Card> stacker = field.getDrawStack();
         field.setCurrentlyPlaying(field.getPlayers().get(0));
         field.handOutCards();
-
         field.setFirstCard();
+    }
+
+    public Player getCurrentlyPlaying(){
+        return field.getCurrentlyPlaying();
     }
 
     public void setField(Field field) {

@@ -4,19 +4,15 @@ import ch.bzz.Uno.model.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class ShuffleDeck {
 
-    public static ArrayList<Card> shuffleDeck(ArrayList<Card> cardsToShuffle){
-        ArrayList<Card> cardsShuffled = cardsToShuffle;
-        ArrayList<Card> cardsNotShuffled = cardsToShuffle;
-        Collections.shuffle(cardsToShuffle);
-        if(cardsNotShuffled != cardsShuffled){
-            return cardsShuffled;
-        }else{
-            shuffleDeck(cardsShuffled);
-        }
 
-    return null;
+
+    public static ArrayList<Card> shuffleDeck(ArrayList<Card> cardsToShuffle){
+        ArrayList<Card> shuffeled = cardsToShuffle;
+        Collections.shuffle(cardsToShuffle);
+        return shuffeled;
     }
 }
