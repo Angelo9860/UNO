@@ -9,7 +9,7 @@ File6=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\GenerateStack.java
 File7=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\PointsTable.java
 File8=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\ShuffleDeck.java
 File9=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\Validator\Validator.java
-File10=C:\dev\UNOPROJECTDone\src\Main.java
+File10=C:\dev\UNOPROJECTDone\src\ch.bzz.Uno.GUI.View.Main.java
 
 [Box:  - ch.bzz.Uno.controller.Controller]
 X=599
@@ -83,7 +83,7 @@ ShowIcons=0
 FontSize=12
 FontName=Segoe UI
 
-[Box:  - Main]
+[Box:  - ch.bzz.Uno.GUI.View.Main]
 X=950
 Y=94
 ShowParameter=4
