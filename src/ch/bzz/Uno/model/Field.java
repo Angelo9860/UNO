@@ -26,7 +26,6 @@ public class Field {
         if (drawStack.size() != 0) {
             card = drawStack.get(0);
             drawStack.remove(0);
-            currentlyPlaying.setHand(card);
             return card;
         } else {
             Card onFieldStackLastCard = onFieldStack.get(onFieldStack.size()-1);
@@ -34,7 +33,6 @@ public class Field {
             setOnFieldStack(onFieldStackLastCard);
             card = drawStack.get(0);
             drawStack.remove(0);
-            currentlyPlaying.setHand(card);
             return card;
         }
     }
@@ -71,8 +69,9 @@ public class Field {
 
 
     public void handOutCards() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 7; i++) {
             for (int x = 0; x < players.size(); x++) {
+                System.out.println("X OF HAND OUT" + x);
                 players.get(x).setHand(drawCard());
             }
         }
