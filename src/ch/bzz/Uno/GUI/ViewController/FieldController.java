@@ -4,40 +4,43 @@ import ch.bzz.Uno.Interfaces.ControllerInterface;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
-public class StartUIController implements ControllerInterface {
-
-
+public class FieldController implements ControllerInterface {
     @Override
     public void addPlayerHasBeenPressed(String name) {
-        controller.addPlayerHasBeenPressed(name);
+
     }
 
     @Override
     public void startGameHasBeenPressed() {
-        controller.startGameHasBeenPressed();
+
     }
 
     @Override
     public Card drawCardHasBeenPressed(Player p) {
-        return null;
+    return controller.drawCardHasBeenPressed(p);
     }
 
     @Override
     public boolean layDownCardHasBeenPressed(Card card) {
         return controller.layDownCardHasBeenPressed(card);
     }
+    @Override
+    public Card cardOnField(){
+
+        return controller.cardOnField();
+    }
 
     @Override
     public void unoHasBeenPressed() {
-        controller.unoHasBeenPressed();
-    }
-
-    public void nextHasBeenPressed(){
-        controller.nextHasBeenPressed();
+controller.unoHasBeenPressed();
     }
 
     @Override
-    public Card cardOnField() {
-        return null;
+    public void nextHasBeenPressed() {
+controller.nextHasBeenPressed();
+    }
+
+    public Player getPlayer() {
+        return controller.getCurrentlyPlaying();
     }
 }

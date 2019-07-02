@@ -8,6 +8,10 @@ public class Card {
     private Color color;
     private int action;
 
+    public Card() {
+
+    }
+
     public Card(String value, boolean isActionCard, Color color, int action) {
         this.value = value;
         this.isActionCard = isActionCard;
@@ -15,29 +19,16 @@ public class Card {
         this.action = action;
     }
 
-
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     public boolean isActionCard() {
         return isActionCard;
     }
 
-    public void setActionCard(boolean actionCard) {
-        isActionCard = actionCard;
-    }
-
     public Color getColor() {
         return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public int getAction() {

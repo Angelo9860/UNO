@@ -1,11 +1,7 @@
 package ch.bzz.Uno.util;
-
 import ch.bzz.Uno.model.Card;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-
 public class ShuffleDeck {
 
 
