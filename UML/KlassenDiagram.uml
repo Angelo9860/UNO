@@ -1,99 +1,116 @@
 ﻿[Files]
 File0=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\controller\Controller.java
-File1=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\GUI\View\StartUI.java
-File2=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\Interfaces\ControllerInterface.java
-File3=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Card.java
-File4=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Field.java
-File5=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Player.java
-File6=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\GenerateStack.java
-File7=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\PointsTable.java
-File8=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\ShuffleDeck.java
-File9=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\Validator\Validator.java
-File10=C:\dev\UNOPROJECTDone\src\ch.bzz.Uno.GUI.View.Main.java
+File1=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\GUI\View\Field.java
+File2=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\GUI\View\StartUI.java
+File3=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\Interfaces\ControllerInterface.java
+File4=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Card.java
+File5=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Field.java
+File6=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\model\Player.java
+File7=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\GenerateStack.java
+File8=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\PointsTable.java
+File9=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\util\ShuffleDeck.java
+File10=C:\dev\UNOPROJECTDone\src\ch\bzz\Uno\Validator\Validator.java
+File11=C:\dev\UNOPROJECTDone\src\Main.java
 
 [Box:  - ch.bzz.Uno.controller.Controller]
-X=599
-Y=259
+X=555
+Y=528
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - ch.bzz.Uno.GUI.View.Field]
+X=542
+Y=19
+ShowParameter=4
+ShowIcons=2
+FontSize=12
+FontName=Segoe UI
+
+[Box:  - ch.bzz.Uno.GUI.View.StartUI]
+X=1272
+Y=306
+ShowParameter=4
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.Interfaces.ControllerInterface]
-X=1272
-Y=70
+X=175
+Y=500
 ShowParameter=0
 ShowIcons=0
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.model.Card]
-X=37
-Y=114
+X=984
+Y=18
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.model.Field]
-X=713
-Y=648
+X=184
+Y=18
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.model.Player]
-X=1551
-Y=539
+X=994
+Y=298
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.util.GenerateStack]
-X=612
-Y=18
+X=1260
+Y=672
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.util.PointsTable]
-X=17
-Y=592
+X=995
+Y=777
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.util.ShuffleDeck]
-X=62
-Y=468
+X=1000
+Y=652
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Box:  - ch.bzz.Uno.Validator.Validator]
-X=1250
-Y=335
+X=966
+Y=894
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
-[Box:  - ch.bzz.Uno.GUI.View.Main]
-X=950
-Y=94
+[Box:  - Main]
+X=12
+Y=30
 ShowParameter=4
-ShowIcons=0
+ShowIcons=2
 FontSize=12
 FontName=Segoe UI
 
 [Diagram]
 comments=0
-OffsetX=690
+OffsetX=0
 OffsetY=0
 Visibility=0
 ShowParameter=4
@@ -109,7 +126,10 @@ V0=ch.bzz.Uno.controller.Controller#ch.bzz.Uno.Interfaces.ControllerInterface#Im
 V1=ch.bzz.Uno.controller.Controller#ch.bzz.Uno.model.Field#AssociationDirected####0#0#0###0#0
 V2=ch.bzz.Uno.controller.Controller#ch.bzz.Uno.Validator.Validator#AssociationDirected####0#0#0###0#0
 V3=ch.bzz.Uno.controller.Controller#ch.bzz.Uno.util.GenerateStack#AssociationDirected####0#0#0###0#0
-V4=ch.bzz.Uno.model.Field#ch.bzz.Uno.model.Player#AssociationDirected####0#0#0###0#0
+V4=ch.bzz.Uno.controller.Controller#ch.bzz.Uno.util.ShuffleDeck#AssociationDirected####0#0#0###0#0
+V5=ch.bzz.Uno.GUI.View.Field#ch.bzz.Uno.model.Player#AssociationDirected####0#0#0###0#0
+V6=ch.bzz.Uno.GUI.View.Field#ch.bzz.Uno.model.Card#AssociationDirected####0#0#0###0#0
+V7=ch.bzz.Uno.model.Field#ch.bzz.Uno.model.Player#AssociationDirected####0#0#0###0#0
 
 [Interactive]
 I0=
