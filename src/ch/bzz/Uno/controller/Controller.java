@@ -13,56 +13,19 @@ import java.util.ArrayList;
 
 
 public class Controller implements ControllerInterface {
-    private int playersPlaying = 0;
-    private int playerPlaying = 0;
     private Field field;
     private Validator validator;
     private GenerateStack stack = new GenerateStack();
     private ShuffleDeck shuffler = new ShuffleDeck();
+
     public Controller(Field field) {
         this.field = field;
         validator = new Validator();
     }
-    @Override
-    public void drawCardHasBeenPressed() {
-        Player player = field.getCurrentlyPlaying();
-        player.setHand(field.drawCard());
-    }
-    //TODO:REVALIDATE FUNCTIONALITY
-   public void layDownCardHasBeenPressed(Card card){
-        validator.checkCard(card, field.getCurrentCard(), field);
-   }
-
-    public void unoHasBeenPressed() {
-        validator.checkUno(field.getCurrentlyPlaying());
-    }
-
-    public void nextHasBeenPressed() {
-        if (field.getCurrentlyPlaying().getHand().size() == 1) {
-            if (validator.getUnoStatus()) {
-                if(playersPlaying != playerPlaying){
-
-                }else{
-                    playerPlaying = 0;
-                    field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
-                }
-
-            } else {
-                //TODO: Check how many cards should be drawn
-                field.drawCard();
-                field.drawCard();
-                field.drawCard();
-                field.drawCard();
-            }
-        }else{
-            field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
-        }
-    }
-
+    //TODO: define what has to be done when Player wins a Round
     public void playerHasWonARound() {
         /*security measure*/
         if (field.getCurrentlyPlaying().getHand().size() == 0) {
-            //TODO: define what has to be done when Player wins a Round
             field.setPlayers(PointsTable.calculatePoints(field.getPlayers(), field.getCurrentlyPlaying()));
         }
     }
@@ -73,16 +36,16 @@ public class Controller implements ControllerInterface {
 
         }
     }
+
     @Override
-    public void addPlayerHasBeenPressed(String name){
+    public void addPlayerHasBeenPressed(String name) {
 
         Player player = new Player(name);
-        System.out.println(player.getUserName());
         field.setPlayer(player);
-        System.out.println("In the list" +field.getPlayers().get(0).getUserName());
     }
+
     @Override
-    public void startGameHasBeenPressed(){
+    public void startGameHasBeenPressed() {
         field.setDrawStack(ShuffleDeck.shuffleDeck(stack.generateStack()));
         field.setDrawStack(stack.generateStack());
         ArrayList<Card> stacker = field.getDrawStack();
@@ -91,11 +54,78 @@ public class Controller implements ControllerInterface {
         field.setFirstCard();
     }
 
-    public Player getCurrentlyPlaying(){
-        return field.getCurrentlyPlaying();
+    @Override
+    public Card drawCardHasBeenPressed(Player p) {
+    return field.getPlayers().get(p.getId()).setHand(field.drawCard());
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    //TODO:REVALIDATE FUNCTIONALITY
+    @Override
+    public boolean layDownCardHasBeenPressed(Card card) {
+        if (validator.checkCard(card, field.getCurrentCard())) {
+            removeSetCardFromPlayerHand(card);
+            field.setOnFieldStack(card);
+           return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void unoHasBeenPressed() {
+        validator.checkUno(field.getCurrentlyPlaying());
+    }
+
+    @Override
+    public void nextHasBeenPressed() {
+        if (field.getCurrentlyPlaying().getHand().size() == 1) {
+            if (validator.getUnoStatus()) {
+                if (field.getCurrentlyPlaying().getId() == field.getPlayers().size()-1) {
+                    field.setCurrentlyPlaying(field.getPlayers().get(0));
+                }else{
+                    field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
+                    if(validator.getDrawCard() != 0){
+                        for (int i = 0; i != validator.getDrawCard(); i++) {
+                            field.getCurrentlyPlaying().setHand(field.drawCard());
+                        }
+                    }
+                }
+            } else {
+                field.getPlayers().get(getCurrentlyPlaying().getId()).setHand(field.drawCard());
+                field.getPlayers().get(getCurrentlyPlaying().getId()).setHand(field.drawCard());
+            }
+        } else {
+
+            if(field.getCurrentlyPlaying().getId() == field.getPlayers().size()-1){
+                field.setCurrentlyPlaying(field.getPlayers().get(0));
+
+                if (validator.getDrawCard() != 0) {
+                    for (int i = 0; i != validator.getDrawCard(); i++) {
+                        field.getCurrentlyPlaying().setHand(field.drawCard());
+                    }
+                }
+            }else {
+                field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
+                if (validator.getDrawCard() != 0) {
+                    for (int i = 0; i != validator.getDrawCard(); i++) {
+                        field.getCurrentlyPlaying().setHand(field.drawCard());
+                    }
+                }
+            }
+
+        }
+        validator.reset();
+    }
+
+    public Card cardOnField() {
+        return field.getCurrentCard();
+    }
+
+    private void removeSetCardFromPlayerHand(Card card) {
+        field.getPlayers().get(field.getCurrentlyPlaying().getId()).removeCard(card);
+    }
+
+    public Player getCurrentlyPlaying() {
+        return field.getCurrentlyPlaying();
     }
 }

@@ -87,14 +87,13 @@ public class StartUI extends JFrame{
 
 
 	public void addPlayerHasBeenPressed(){
-		System.out.print("Hello");
 		controller.addPlayerHasBeenPressed(field.getText());
 
 	}
 
 	public void startGameHasBeenPressed(){
-		System.out.print("Hello");
 		controller.startGameHasBeenPressed();
+		setVisible(false);
 		Field field = new Field();
 
 	}

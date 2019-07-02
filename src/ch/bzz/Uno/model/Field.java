@@ -7,17 +7,10 @@ import java.util.ArrayList;
 
 public class Field {
 
-    private ArrayList<Card> drawStack = new ArrayList<Card>();
-    private ArrayList<Card> onFieldStack = new ArrayList<Card>();
-    private ArrayList<Player> players = new ArrayList<Player>();
+    private ArrayList<Card> drawStack = new ArrayList<>();
+    private ArrayList<Card> onFieldStack = new ArrayList<>();
+    private ArrayList<Player> players = new ArrayList<>();
     private Player currentlyPlaying;
-    private boolean hasWish = false;
-    private Color wishColor;
-    private int drawCards;
-    private boolean skip = false;
-    private boolean reverse = false;
-
-
     public Field() {
     }
 
@@ -46,7 +39,6 @@ public class Field {
         currentlyPlaying = player;
     }
 
-    //TODO: Return Player who is currently playing
     public Player getCurrentlyPlaying() {
         return currentlyPlaying;
 
@@ -57,7 +49,7 @@ public class Field {
         //Idea, size is always one bigger then the card added last.
         return onFieldStack.get(onFieldStack.size() - 1);
     }
-
+//TODO: IMPLEMENT REVERSE
     public void setPlayer(Player player) {
         player.setId(players.size());
         players.add(player);
@@ -71,7 +63,6 @@ public class Field {
     public void handOutCards() {
         for (int i = 0; i < 7; i++) {
             for (int x = 0; x < players.size(); x++) {
-                System.out.println("X OF HAND OUT" + x);
                 players.get(x).setHand(drawCard());
             }
         }
@@ -93,50 +84,6 @@ public class Field {
         setOnFieldStack(drawCard());
     }
 
-    public void setOnFieldStack(ArrayList<Card> onFieldStack) {
-        this.onFieldStack = onFieldStack;
-    }
-
-    public boolean isHasWish() {
-        return hasWish;
-    }
-
-    public void setHasWish(boolean hasWish) {
-        this.hasWish = hasWish;
-    }
-
-    public Color getWishColor() {
-        return wishColor;
-    }
-
-    public void setWishColor(Color wishColor) {
-        this.wishColor = wishColor;
-    }
-
-    public int getDrawCards() {
-        return drawCards;
-    }
-
-    public void setDrawCards(int drawCards) {
-        this.drawCards = drawCards;
-    }
-
-    public boolean isSkip() {
-        return skip;
-    }
-
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
-
-    public boolean isReverse() {
-        return reverse;
-    }
-
-    public void setReverse(boolean reverse) {
-        this.reverse = reverse;
-    }
-
     //TODO: Not sure if needed.
     public ArrayList<Card> getDrawStack() {
         return drawStack;
@@ -145,8 +92,6 @@ public class Field {
     public void setDrawStack(ArrayList<Card> stack) {
         this.drawStack = stack;
     }
-
-
 }
 
 

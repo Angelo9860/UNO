@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GenerateStack {
 
-    private ArrayList<Card> stack = new ArrayList<Card>();
+    private ArrayList<Card> stack = new ArrayList<>();
 
     public  ArrayList<Card> generateStack() {
 
@@ -54,41 +54,41 @@ public class GenerateStack {
     }
 
     private void generateActionCards() {
-        stack.add(new Card("+2", false, Color.green, 1));
-        stack.add(new Card("+2", false, Color.green, 1));
-        stack.add(new Card("+2", false, Color.blue, 1));
-        stack.add(new Card("+2", false, Color.blue, 1));
-        stack.add(new Card("+2", false, Color.red, 1));
-        stack.add(new Card("+2", false, Color.red, 1));
-        stack.add(new Card("+2", false, Color.yellow, 1));
-        stack.add(new Card("+2", false, Color.yellow, 1));
+        stack.add(new Card("+2", true, Color.green, 1));
+        stack.add(new Card("+2", true, Color.green, 1));
+        stack.add(new Card("+2", true, Color.blue, 1));
+        stack.add(new Card("+2", true, Color.blue, 1));
+        stack.add(new Card("+2", true, Color.red, 1));
+        stack.add(new Card("+2", true, Color.red, 1));
+        stack.add(new Card("+2", true, Color.yellow, 1));
+        stack.add(new Card("+2", true, Color.yellow, 1));
 
-        stack.add(new Card("Reverse", false, Color.green, 2));
-        stack.add(new Card("Reverse", false, Color.green, 2));
-        stack.add(new Card("Reverse", false, Color.blue, 2));
-        stack.add(new Card("Reverse", false, Color.blue, 2));
-        stack.add(new Card("Reverse", false, Color.red, 2));
-        stack.add(new Card("Reverse", false, Color.red, 2));
-        stack.add(new Card("Reverse", false, Color.yellow, 2));
-        stack.add(new Card("Reverse", false, Color.yellow, 2));
+        stack.add(new Card("Reverse", true, Color.green, 2));
+        stack.add(new Card("Reverse", true, Color.green, 2));
+        stack.add(new Card("Reverse", true, Color.blue, 2));
+        stack.add(new Card("Reverse", true, Color.blue, 2));
+        stack.add(new Card("Reverse", true, Color.red, 2));
+        stack.add(new Card("Reverse", true, Color.red, 2));
+        stack.add(new Card("Reverse", true, Color.yellow, 2));
+        stack.add(new Card("Reverse", true, Color.yellow, 2));
 
-        stack.add(new Card("Skip", false, Color.green, 3));
-        stack.add(new Card("Skip", false, Color.green, 3));
-        stack.add(new Card("Skip", false, Color.blue, 3));
-        stack.add(new Card("Skip", false, Color.blue, 3));
-        stack.add(new Card("Skip", false, Color.red, 3));
-        stack.add(new Card("Skip", false, Color.red, 3));
-        stack.add(new Card("Skip", false, Color.yellow, 3));
-        stack.add(new Card("Skip", false, Color.yellow, 3));
+        stack.add(new Card("Skip", true, Color.green, 3));
+        stack.add(new Card("Skip", true, Color.green, 3));
+        stack.add(new Card("Skip", true, Color.blue, 3));
+        stack.add(new Card("Skip", true, Color.blue, 3));
+        stack.add(new Card("Skip", true, Color.red, 3));
+        stack.add(new Card("Skip", true, Color.red, 3));
+        stack.add(new Card("Skip", true, Color.yellow, 3));
+        stack.add(new Card("Skip", true, Color.yellow, 3));
 
-        stack.add(new Card("+4", false, Color.black, 4));
-        stack.add(new Card("+4", false, Color.black, 4));
-        stack.add(new Card("+4", false, Color.black, 4));
-        stack.add(new Card("+4", false, Color.black, 4));
-        stack.add(new Card("wish", false, Color.black, 5));
-        stack.add(new Card("wish", false, Color.black, 5));
-        stack.add(new Card("wish", false, Color.black, 5));
-        stack.add(new Card("wish", false, Color.black, 5));
+        stack.add(new Card("+4", true, Color.black, 4));
+        stack.add(new Card("+4", true, Color.black, 4));
+        stack.add(new Card("+4", true, Color.black, 4));
+        stack.add(new Card("+4", true, Color.black, 4));
+        stack.add(new Card("wish", true, Color.black, 5));
+        stack.add(new Card("wish", true, Color.black, 5));
+        stack.add(new Card("wish", true, Color.black, 5));
+        stack.add(new Card("wish", true, Color.black, 5));
 
 
     }

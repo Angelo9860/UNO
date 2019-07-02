@@ -1,14 +1,10 @@
 package ch.bzz.Uno.GUI.View;
 
-import ch.bzz.Uno.GUI.viewController.SpielbrettController;
-import ch.bzz.Uno.Interfaces.ControllerInterface;
-import ch.bzz.Uno.controller.Controller;
+import ch.bzz.Uno.GUI.ViewController.FieldController;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.xml.bind.annotation.XmlType;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,92 +14,116 @@ public class Field extends JFrame {
 
     private JPanel panelWest = new JPanel();
     private JPanel panelSouth = new JPanel();
-    private JLabel playerName = new JLabel(" ");
+    private JPanel field = new JPanel();
+    private JLabel playerName = new JLabel("");
+    private JButton cardOnFieldLabel = new JButton("");
     private JButton drawCard = new JButton("Draw Card");
-    private JButton layDownCard = new JButton("lay down a Card");
-    private JButton uno= new JButton("Uno!");
+    private JButton uno = new JButton("Uno!");
     private JButton next = new JButton("Pass");
     private ArrayList<Card> hand = new ArrayList<>();
     private Player currentlyPlaying;
-    private SpielbrettController controller = new SpielbrettController();
+    private FieldController controller = new FieldController();
+    private Card cardOnField;
 
-    public Field(){
+    public Field() {
         listeners();
         getPlayer();
         getHand();
+        getLayedDownCard();
         init();
+    }
 
+    private void getLayedDownCard() {
+        cardOnField = controller.cardOnField();
     }
 
 
-
-
-    public void init(){
+    public void init() {
         setSize(400, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        panelWest.setLayout(new GridLayout(4,0));
+        panelWest.setLayout(new GridLayout(4, 0));
         panelWest.add(drawCard);
         panelWest.add(next);
         panelWest.add(uno);
         panelWest.add(playerName);
         makeHandPanels();
-
+        makeFieldPanel();
         add(panelWest, BorderLayout.WEST);
         add(panelSouth, BorderLayout.SOUTH);
+        add(field, BorderLayout.CENTER);
         setVisible(true);
     }
 
+    public void makeFieldPanel() {
+        field.setLayout(new FlowLayout());
+        cardOnFieldLabel.setText(cardOnField.getValue());
+        cardOnFieldLabel.setBackground(cardOnField.getColor());
+        field.add(cardOnFieldLabel);
+    }
+
     private void getPlayer() {
-        currentlyPlaying =  controller.getPlayer();
+        currentlyPlaying = controller.getPlayer();
         playerName.setText("Currently playing: " + currentlyPlaying.getUserName());
     }
 
     private void getHand() {
         hand = currentlyPlaying.getHand();
-        System.out.println("SIZE OF PLAYER HAND" + hand.size());
     }
 
-    private void makeHandPanels(){
+    private void makeHandPanels() {
         panelSouth.setLayout(new FlowLayout());
-        for(int i = 0; i < hand.size(); i++){
-            System.out.println(hand.get(i).getValue());
-            JButton button = new JButton (" " + hand.get(i).getValue());
+        for (int i = 0; i < hand.size(); i++) {
+            JButton button = new JButton(hand.get(i).getValue());
             button.setBackground(hand.get(i).getColor());
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    layDownCardHasBeenPressed(e);
+                    layDownCardHasBeenPressed(button.getText(), button.getBackground());
                 }
             });
             panelSouth.add(button);
         }
-
     }
 
-    public void listeners(){
+    public void listeners() {
         drawCard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.drawCardHasBeenPressed(currentlyPlaying);
+                setVisible(false);
+                Field field = new Field();
             }
         });
         uno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.unoHasBeenPressed();
             }
         });
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.nextHasBeenPressed();
+                setVisible(false);
+                Field field = new Field();
             }
         });
     }
 
-    private void layDownCardHasBeenPressed(ActionEvent e){
-        System.out.println(e.paramString());
-    }
+    private void layDownCardHasBeenPressed(String value, Color color) {
+        Card card = new Card();
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).getColor().equals(color) && hand.get(i).getValue().equals(value)) {
+                card = hand.get(i);
+            }
+        }
+        if (controller.layDownCardHasBeenPressed(card)) {
+            hand.remove(card);
+            setVisible(false);
+            Field field = new Field();
+        } else {
 
+        }
+    }
 }

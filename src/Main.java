@@ -1,4 +1,3 @@
-import ch.bzz.Uno.GUI.View.Field;
 import ch.bzz.Uno.GUI.View.StartUI;
 
 public class Main {
