@@ -3,6 +3,8 @@ package ch.bzz.Uno.Validator;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
+import java.awt.*;
+
 public class Validator {
 
     private boolean unoStatus = false;
@@ -17,6 +19,19 @@ public class Validator {
         } else if (regularCheck(toLayDownCard, onStackCard)) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean checkCard(Card toLayDownCard, Card onStackCard, Color wished) {
+            return checkAfterActionCard(toLayDownCard, onStackCard, wished);
+    }
+
+    private boolean checkAfterActionCard(Card toLayDownCard, Card onStackCard, Color wished) {
+        if(toLayDownCard.getColor() == wished){
+            setWish(false);
+            return true;
+        }else{
             return false;
         }
     }
