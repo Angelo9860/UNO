@@ -4,8 +4,15 @@ import ch.bzz.Uno.Interfaces.ControllerInterface;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
+import java.awt.*;
+
 public class StartUIController implements ControllerInterface {
 
+
+    @Override
+    public Color getWishColor() {
+        return null;
+    }
 
     @Override
     public void addPlayerHasBeenPressed(String name) {
@@ -23,8 +30,8 @@ public class StartUIController implements ControllerInterface {
     }
 
     @Override
-    public boolean layDownCardHasBeenPressed(Card card) {
-        return controller.layDownCardHasBeenPressed(card);
+    public boolean layDownCardHasBeenPressed(Card card, Color wishColorString) {
+        return controller.layDownCardHasBeenPressed(card, wishColorString);
     }
 
     @Override
@@ -39,5 +46,10 @@ public class StartUIController implements ControllerInterface {
     @Override
     public Card cardOnField() {
         return null;
+    }
+
+    @Override
+    public void resetWishColor() {
+
     }
 }

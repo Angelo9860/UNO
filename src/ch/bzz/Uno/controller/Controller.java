@@ -9,6 +9,7 @@ import ch.bzz.Uno.util.GenerateStack;
 import ch.bzz.Uno.util.PointsTable;
 import ch.bzz.Uno.util.ShuffleDeck;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -17,11 +18,15 @@ public class Controller implements ControllerInterface {
     private Validator validator;
     private GenerateStack stack = new GenerateStack();
     private ShuffleDeck shuffler = new ShuffleDeck();
+    private Color wished;
+    private static Color defaultColor = new Color(238, 238, 238);
+
 
     public Controller(Field field) {
         this.field = field;
         validator = new Validator();
     }
+
     //TODO: define what has to be done when Player wins a Round
     public void playerHasWonARound() {
         /*security measure*/
@@ -56,19 +61,44 @@ public class Controller implements ControllerInterface {
 
     @Override
     public Card drawCardHasBeenPressed(Player p) {
-    return field.getPlayers().get(p.getId()).setHand(field.drawCard());
+        return field.getPlayers().get(p.getId()).setHand(field.drawCard());
     }
 
     //TODO:REVALIDATE FUNCTIONALITY
     @Override
-    public boolean layDownCardHasBeenPressed(Card card) {
-        if (validator.checkCard(card, field.getCurrentCard())) {
-            removeSetCardFromPlayerHand(card);
-            field.setOnFieldStack(card);
-           return true;
+    public boolean layDownCardHasBeenPressed(Card card, Color wishColor) {
+        if (wishColor != Color.pink) {
+            wished = wishColor;
+            if (validator.checkCard(card, field.getCurrentCard())) {
+                removeSetCardFromPlayerHand(card);
+                field.setOnFieldStack(card);
+                return true;
+            } else {
+                return false;
+            }
+        } else if (wished != null && card.getColor() != Color.black && card.getColor() == wished) {
+            if (validator.checkCard(card, field.getCurrentCard(), wished)) {
+                removeSetCardFromPlayerHand(card);
+                field.setOnFieldStack(card);
+                wished = Color.pink;
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            if (validator.checkCard(card, field.getCurrentCard())) {
+                removeSetCardFromPlayerHand(card);
+                field.setOnFieldStack(card);
+                return true;
+            } else {
+                return false;
+            }
         }
+    }
+
+    @Override
+    public void resetWishColor() {
+        wished = Color.pink;
     }
 
     @Override
@@ -80,11 +110,11 @@ public class Controller implements ControllerInterface {
     public void nextHasBeenPressed() {
         if (field.getCurrentlyPlaying().getHand().size() == 1) {
             if (validator.getUnoStatus()) {
-                if (field.getCurrentlyPlaying().getId() == field.getPlayers().size()-1) {
+                if (field.getCurrentlyPlaying().getId() == field.getPlayers().size() - 1) {
                     field.setCurrentlyPlaying(field.getPlayers().get(0));
-                }else{
+                } else {
                     field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
-                    if(validator.getDrawCard() != 0){
+                    if (validator.getDrawCard() != 0) {
                         for (int i = 0; i != validator.getDrawCard(); i++) {
                             field.getCurrentlyPlaying().setHand(field.drawCard());
                         }
@@ -96,7 +126,7 @@ public class Controller implements ControllerInterface {
             }
         } else {
 
-            if(field.getCurrentlyPlaying().getId() == field.getPlayers().size()-1){
+            if (field.getCurrentlyPlaying().getId() == field.getPlayers().size() - 1) {
                 field.setCurrentlyPlaying(field.getPlayers().get(0));
 
                 if (validator.getDrawCard() != 0) {
@@ -104,7 +134,7 @@ public class Controller implements ControllerInterface {
                         field.getCurrentlyPlaying().setHand(field.drawCard());
                     }
                 }
-            }else {
+            } else {
                 field.setCurrentlyPlaying(field.getPlayers().get(field.getCurrentlyPlaying().getId() + 1));
                 if (validator.getDrawCard() != 0) {
                     for (int i = 0; i != validator.getDrawCard(); i++) {
@@ -115,6 +145,11 @@ public class Controller implements ControllerInterface {
 
         }
         validator.reset();
+    }
+
+    @Override
+    public Color getWishColor() {
+        return wished;
     }
 
     public Card cardOnField() {

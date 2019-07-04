@@ -16,6 +16,7 @@ public class Field extends JFrame {
     private JPanel panelSouth = new JPanel();
     private JPanel field = new JPanel();
     private JLabel playerName = new JLabel("");
+    private JButton colorWish = new JButton("Click for Color");
     private JButton cardOnFieldLabel = new JButton("");
     private JButton drawCard = new JButton("Draw Card");
     private JButton uno = new JButton("Uno!");
@@ -24,13 +25,38 @@ public class Field extends JFrame {
     private Player currentlyPlaying;
     private FieldController controller = new FieldController();
     private Card cardOnField;
+    private JLabel wished = new JLabel("");
+    private static Color defaultColor = new Color(238,238,238);
 
     public Field() {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         listeners();
         getPlayer();
         getHand();
+        defaultColor = colorWish.getBackground();
+        getWished();
         getLayedDownCard();
+        mappingWishColor();
         init();
+        //resetWishColor();
+    }
+
+    private void resetWishColor() {
+        controller.resetWishColor();
+    }
+
+    private void mappingWishColor() {
+        if(getWished() == Color.blue){
+            wished.setText("WISHED COLOR IS BLUE");
+        }else if(getWished() == Color.red){
+            wished.setText("WISHED COLOR IS RED");
+        }else if(getWished() == Color.yellow){
+            wished.setText("WISHED COLOR IS YELLOW");
+        }else if(getWished() == Color.green){
+            wished.setText("WISHED COLOR IS GREEN");
+        }else{
+            wished.setText(" ");
+        }
     }
 
     private void getLayedDownCard() {
@@ -42,13 +68,17 @@ public class Field extends JFrame {
         setSize(400, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        panelWest.setLayout(new GridLayout(4, 0));
+
+        panelWest.setLayout(new GridLayout(6, 0));
         panelWest.add(drawCard);
         panelWest.add(next);
         panelWest.add(uno);
+        panelWest.add(colorWish);
         panelWest.add(playerName);
+        panelWest.add(wished);
         makeHandPanels();
         makeFieldPanel();
+        getWished();
         add(panelWest, BorderLayout.WEST);
         add(panelSouth, BorderLayout.SOUTH);
         add(field, BorderLayout.CENTER);
@@ -87,6 +117,24 @@ public class Field extends JFrame {
     }
 
     public void listeners() {
+        colorWish.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(colorWish.getBackground() == Color.blue){
+                    colorWish.setBackground(Color.green);
+                }else if(colorWish.getBackground() == Color.yellow) {
+                    colorWish.setBackground(Color.red);
+                }else if(colorWish.getBackground() == Color.green){
+                    colorWish.setBackground(Color.yellow);
+                }else if(colorWish.getBackground() == Color.red){
+                    colorWish.setBackground(Color.blue);
+                }else if(colorWish.getBackground() == defaultColor){
+                    colorWish.setBackground(Color.blue);
+                }
+
+            }
+        });
+
         drawCard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,18 +160,29 @@ public class Field extends JFrame {
     }
 
     private void layDownCardHasBeenPressed(String value, Color color) {
+        Color wishColor = Color.pink;
         Card card = new Card();
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).getColor().equals(color) && hand.get(i).getValue().equals(value)) {
                 card = hand.get(i);
             }
         }
-        if (controller.layDownCardHasBeenPressed(card)) {
+            if(card.getColor() == Color.black){
+                wishColor = colorWish.getBackground();
+            }else{
+                wishColor = Color.pink;
+            }
+        if (controller.layDownCardHasBeenPressed(card, wishColor)) {
             hand.remove(card);
             setVisible(false);
-            Field field = new Field();
-        } else {
 
+            Field field = new Field();
         }
+
+
+    }
+    public Color getWished(){
+    return controller.getWishColor();
+
     }
 }

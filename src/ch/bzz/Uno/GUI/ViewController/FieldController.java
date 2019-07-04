@@ -4,10 +4,17 @@ import ch.bzz.Uno.Interfaces.ControllerInterface;
 import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
+import java.awt.*;
+
 public class FieldController implements ControllerInterface {
     @Override
     public void addPlayerHasBeenPressed(String name) {
 
+    }
+
+    @Override
+    public Color getWishColor(){
+        return controller.getWishColor();
     }
 
     @Override
@@ -21,13 +28,17 @@ public class FieldController implements ControllerInterface {
     }
 
     @Override
-    public boolean layDownCardHasBeenPressed(Card card) {
-        return controller.layDownCardHasBeenPressed(card);
+    public boolean layDownCardHasBeenPressed(Card card, Color wishColorString) {
+        return controller.layDownCardHasBeenPressed(card, wishColorString);
     }
     @Override
     public Card cardOnField(){
-
         return controller.cardOnField();
+    }
+
+    @Override
+    public void resetWishColor() {
+        controller.resetWishColor();
     }
 
     @Override
