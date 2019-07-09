@@ -10,11 +10,11 @@ public class PointsTable {
     public PointsTable(){
 
     }
-    public static ArrayList<Player> calculatePoints(ArrayList<Player> players, Player wonRound){
-        for(int i = 0; i < players.size(); i++){
+    public ArrayList<Player> calculatePoints(ArrayList<Player> players, Player wonRound){
+        for(int i = 0; i < players.size()-1; i++){
             if(wonRound.getId() != players.get(i).getId()){
                 ArrayList<Card> handOfPlayerThatLost = players.get(i).getHand();
-                for(int x = 0; x < handOfPlayerThatLost.size(); x++){
+                for(int x = 0; x < handOfPlayerThatLost.size()-1; x++){
                     String value = handOfPlayerThatLost.get(x).getValue();
                     if(value.equals("+2") || value.equals("Reverse") || value.equals("Skip")){
                         wonRound.setPoints(20);

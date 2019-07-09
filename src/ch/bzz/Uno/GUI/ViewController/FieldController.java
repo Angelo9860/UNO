@@ -5,6 +5,7 @@ import ch.bzz.Uno.model.Card;
 import ch.bzz.Uno.model.Player;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FieldController implements ControllerInterface {
     @Override
@@ -20,6 +21,10 @@ public class FieldController implements ControllerInterface {
     @Override
     public void startGameHasBeenPressed() {
 
+    }
+
+    public void calculatePoints(){
+        controller.calculatePoints();
     }
 
     @Override
@@ -54,4 +59,6 @@ controller.nextHasBeenPressed();
     public Player getPlayer() {
         return controller.getCurrentlyPlaying();
     }
+
+
 }

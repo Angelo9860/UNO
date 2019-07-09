@@ -20,4 +20,5 @@ public interface ControllerInterface {
     void nextHasBeenPressed();
     Card cardOnField();
     void resetWishColor();
+
 }
