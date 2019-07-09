@@ -113,6 +113,8 @@ public class Controller implements ControllerInterface {
                 }
                 System.out.println("Skip: " + getToSkip());
                 setReverse(validator.isReverse());
+                System.out.println("Reverse Controller: " + isReverse());
+                System.out.println("Reverse Validator: " + validator.isReverse());
                 return true;
             } else {
                 return false;
