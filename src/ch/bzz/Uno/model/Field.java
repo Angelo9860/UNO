@@ -92,6 +92,8 @@ public class Field {
     public void setDrawStack(ArrayList<Card> stack) {
         this.drawStack = stack;
     }
+
+
 }
 
 

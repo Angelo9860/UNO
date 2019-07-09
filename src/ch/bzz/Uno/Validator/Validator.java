@@ -9,9 +9,9 @@ public class Validator {
 
     private boolean unoStatus = false;
     private int drawCard = 0;
-    private boolean reverse = false;
-    private boolean skip = false;
-    private boolean wish = false;
+    private boolean reverse;
+    private boolean skip;
+    private boolean wish;
 
     public boolean checkCard(Card toLayDownCard, Card onStackCard) {
         if (toLayDownCard.isActionCard()) {
@@ -50,7 +50,11 @@ public class Validator {
 
         if (action == 2 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()))) {
             //Reverse
-            setReverse(true);
+            if(isReverse()){
+                setReverse(false);
+            }else{
+                setReverse(true);
+            }
             return true;
         }
         if (action == 3 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()))) {
@@ -60,6 +64,7 @@ public class Validator {
         }
         if (action == 4) {
             //+4
+            System.out.println("is 4");
             setDrawCard(4);
             setWish(true);
             return true;
@@ -69,6 +74,7 @@ public class Validator {
         if (action == 5) {
             //wish
             //TODO: Find a way to set and get the color
+            System.out.println("is 5");
             setWish(true);
             return true;
             //field.setWishColor(color);

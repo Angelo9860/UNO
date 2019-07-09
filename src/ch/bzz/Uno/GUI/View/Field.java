@@ -173,16 +173,27 @@ public class Field extends JFrame {
                 wishColor = Color.pink;
             }
         if (controller.layDownCardHasBeenPressed(card, wishColor)) {
-            hand.remove(card);
-            setVisible(false);
 
-            Field field = new Field();
+            hand.remove(card);
+            if(hand.size() == 0){
+                controller.calculatePoints();
+                showPoints();
+            }else{
+                setVisible(false);
+                Field field = new Field();
+            }
+
         }
 
 
     }
+
+
     public Color getWished(){
     return controller.getWishColor();
 
+    }
+    public void showPoints(){
+    PointsUI ui = new PointsUI();
     }
 }
