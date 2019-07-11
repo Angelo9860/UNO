@@ -93,7 +93,6 @@ public class Validator {
     public void reset() {
         setWish(false);
         setDrawCard(0);
-        setReverse(false);
         setSkip(false);
         setUnoStatus(false);
 

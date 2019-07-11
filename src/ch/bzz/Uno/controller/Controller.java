@@ -92,11 +92,11 @@ public class Controller implements ControllerInterface {
             } else {
                 return false;
             }
-        } else if (isReverse()) {
-            setReverse(false);
+        } /*else if (isReverse()) {
+            setReverse(validator.isReverse());
             return true;
 
-        } else {
+        } */else {
             wished = wishColor;
             if (validator.checkCard(card, field.getCurrentCard())) {
                 removeSetCardFromPlayerHand(card);
