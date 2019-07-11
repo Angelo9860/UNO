@@ -26,7 +26,7 @@ public class PointsTable {
 
                 }
             }
-
+System.out.println(wonRound.getPoints());
         }
         players.set(wonRound.getId(), wonRound);
         return players;
