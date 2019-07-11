@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class PointsUI extends JFrame {
     private JLabel win = new JLabel("");
+    private JLabel points = new JLabel("");
     private JButton newRound = new JButton("Neue Runde");
     private JLabel centerSpace1 = new JLabel("");
     private JLabel centerSpace2 = new JLabel("");
@@ -27,8 +28,9 @@ public class PointsUI extends JFrame {
     public PointsUI() {
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.init();
         players = controller.getPlayers();
+        getPoints();
+        this.init();
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -72,6 +74,7 @@ public class PointsUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 setVisible(false);
+                controller.startGameHasBeenPressed();
                 Field ui = new Field();
 
             }
@@ -95,5 +98,14 @@ public class PointsUI extends JFrame {
             center.add(label);
         }
 
+    }
+
+    public void getPoints(){
+        for(int i = 0; i < players.size(); i++){
+            System.out.println("SIZEARRAY" + players.size());
+            System.out.println(points.getText() + "\n" + players.get(i).getUserName() + ": " + players.get(i).getPoints()+ " HELLO"
+            );
+            points.setText(points.getText() + "\n" + players.get(i).getUserName() + ": " + players.get(i).getPoints()+ " HELLO");
+        }
     }
 }

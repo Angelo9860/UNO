@@ -209,6 +209,7 @@ public class Controller implements ControllerInterface {
         resetWishColor();
     }
 
+
     public Player getCurrentlyPlaying() {
         return field.getCurrentlyPlaying();
     }

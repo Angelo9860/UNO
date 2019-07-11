@@ -194,6 +194,7 @@ public class Field extends JFrame {
 
     }
     public void showPoints(){
+        setVisible(false);
     PointsUI ui = new PointsUI();
     }
 }

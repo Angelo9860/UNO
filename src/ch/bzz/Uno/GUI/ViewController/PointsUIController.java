@@ -22,7 +22,7 @@ public class PointsUIController implements ControllerInterface {
 
     @Override
     public void startGameHasBeenPressed() {
-
+        controller.startGameHasBeenPressed();
     }
 
     @Override
