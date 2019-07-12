@@ -11,7 +11,7 @@ public class PointsTable {
 
     }
     public ArrayList<Player> calculatePoints(ArrayList<Player> players, Player wonRound){
-        for(int i = 0; i < players.size()-1; i++){
+        for(int i = 0; i < players.size(); i++){
             if(wonRound.getId() != players.get(i).getId()){
                 ArrayList<Card> handOfPlayerThatLost = players.get(i).getHand();
                 for(int x = 0; x < handOfPlayerThatLost.size()-1; x++){
