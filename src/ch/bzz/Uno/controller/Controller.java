@@ -55,6 +55,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void startGameHasBeenPressed() {
+        resetHands();
         field.setDrawStack(ShuffleDeck.shuffleDeck(stack.generateStack()));
         field.setDrawStack(stack.generateStack());
         ArrayList<Card> stacker = field.getDrawStack();
@@ -207,6 +208,13 @@ public class Controller implements ControllerInterface {
         setReverse(false);
         setToSkip(0);
         resetWishColor();
+    }
+
+    public void resetHands(){
+        for(int i = 0; i < field.getPlayers().size(); i++ ){
+            field.getPlayers().get(i).resetHand();
+        }
+
     }
 
 

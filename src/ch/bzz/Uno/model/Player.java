@@ -35,4 +35,8 @@ public class Player {
     }
     public void removeCard(Card card){
     }
+
+    public void resetHand() {
+        hand.clear();
+    }
 }
