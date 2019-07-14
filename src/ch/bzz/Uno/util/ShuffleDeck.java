@@ -9,6 +9,7 @@ public class ShuffleDeck {
     public static ArrayList<Card> shuffleDeck(ArrayList<Card> cardsToShuffle){
         ArrayList<Card> shuffeled = cardsToShuffle;
         Collections.shuffle(cardsToShuffle);
+
         return shuffeled;
     }
 }

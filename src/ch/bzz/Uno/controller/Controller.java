@@ -57,7 +57,6 @@ public class Controller implements ControllerInterface {
     public void startGameHasBeenPressed() {
         resetHands();
         field.setDrawStack(ShuffleDeck.shuffleDeck(stack.generateStack()));
-        field.setDrawStack(stack.generateStack());
         ArrayList<Card> stacker = field.getDrawStack();
         field.setCurrentlyPlaying(field.getPlayers().get(0));
         field.handOutCards();
@@ -87,17 +86,21 @@ public class Controller implements ControllerInterface {
             if (validator.checkCard(card, field.getCurrentCard(), wished)) {
                 removeSetCardFromPlayerHand(card);
                 field.setOnFieldStack(card);
-                wished = Color.pink;
-                setWish(false);
+                setWish(validator.isWish());
+                wished = wishColor;
+                setReverse(validator.isReverse());
+                if (validator.isSkip()) {
+                    setSkip(true);
+                    setToSkip(1);
+                } else {
+                    setSkip(false);
+                    setToSkip(0);
+                }
                 return true;
             } else {
                 return false;
             }
-        } /*else if (isReverse()) {
-            setReverse(validator.isReverse());
-            return true;
-
-        } */else {
+        } else {
             wished = wishColor;
             if (validator.checkCard(card, field.getCurrentCard())) {
                 removeSetCardFromPlayerHand(card);
