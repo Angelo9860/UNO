@@ -29,7 +29,7 @@ public class PointsUI extends JFrame {
         super();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         players = controller.getPlayers();
-        getPoints();
+        showPoints();
         this.init();
         this.pack();
         this.setLocationRelativeTo(null);
@@ -62,7 +62,6 @@ public class PointsUI extends JFrame {
         north.add(new JLabel(" "));
         north.add(win);
         north.add(new JLabel(" "));
-        showPoints();
         add(north, BorderLayout.NORTH);
         add(newRound, BorderLayout.SOUTH);
         add(center, BorderLayout.CENTER);
@@ -93,19 +92,19 @@ public class PointsUI extends JFrame {
 
 
     public void showPoints() {
-        for (int i = 0; i < players.size() - 1; i++) {
+        for (int i = 0; i < players.size(); i++) {
             JLabel label = new JLabel(players.get(i).getUserName() + ": " + players.get(i).getPoints());
             center.add(label);
         }
 
     }
 
-    public void getPoints(){
+   /* public void getPoints(){
         for(int i = 0; i < players.size(); i++){
             System.out.println("SIZEARRAY" + players.size());
             System.out.println(points.getText() + "\n" + players.get(i).getUserName() + ": " + players.get(i).getPoints()+ " HELLO"
             );
             points.setText(points.getText() + "\n" + players.get(i).getUserName() + ": " + players.get(i).getPoints()+ " HELLO");
         }
-    }
+    }*/
 }

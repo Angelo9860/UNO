@@ -30,6 +30,9 @@ public class Validator {
     private boolean checkAfterActionCard(Card toLayDownCard, Card onStackCard, Color wished) {
         if(toLayDownCard.getColor() == wished){
             setWish(false);
+            if(toLayDownCard.isActionCard()){
+                checkAction(toLayDownCard, onStackCard);
+            }
             return true;
         }else{
             return false;
@@ -42,13 +45,13 @@ public class Validator {
 
     public boolean checkAction(Card toLayDownCard, Card onStackCard) {
         int action = toLayDownCard.getAction();
-        if (action == 1 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()))) {
+        if (action == 1 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()) || onStackCard.getColor().equals(Color.black))) {
             //+2
             setDrawCard(2);
             return true;
         }
 
-        if (action == 2 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()))) {
+        if (action == 2 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()) || onStackCard.getColor().equals(Color.black))) {
             //Reverse
             if(isReverse()){
                 setReverse(false);
@@ -57,7 +60,7 @@ public class Validator {
             }
             return true;
         }
-        if (action == 3 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()))) {
+        if (action == 3 && (onStackCard.getColor().equals(toLayDownCard.getColor()) || onStackCard.getValue().equals(toLayDownCard.getValue()) || onStackCard.getColor().equals(Color.black))) {
             //skip
             setSkip(true);
             return true;
