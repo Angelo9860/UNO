@@ -2,17 +2,29 @@ package ch.bzz.Uno.model;
 
 import ch.bzz.Uno.util.ShuffleDeck;
 
-import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * @author : Angelo Lachnit
+ * @version : 1.0
+ * @description: The playing field model
+ */
 public class Field {
 
     private ArrayList<Card> drawStack = new ArrayList<>();
     private ArrayList<Card> onFieldStack = new ArrayList<>();
     private ArrayList<Player> players = new ArrayList<>();
     private Player currentlyPlaying;
+
+    /**
+     * description: default constructor
+     */
     public Field() {
     }
+
+    /**
+     * @return returns a card that has been drawn
+     */
 
     public Card drawCard() {
         Card card;
@@ -43,13 +55,11 @@ public class Field {
         return currentlyPlaying;
 
     }
-
-    //TODO: Return current card on donestack
     public Card getCurrentCard() {
         //Idea, size is always one bigger then the card added last.
         return onFieldStack.get(onFieldStack.size() - 1);
     }
-//TODO: IMPLEMENT REVERSE
+
     public void setPlayer(Player player) {
         player.setId(players.size());
         players.add(player);
@@ -59,7 +69,9 @@ public class Field {
         return players;
     }
 
-
+    /**
+     * @description hands out the cards (7 Cards) for the players to start the round
+     */
     public void handOutCards() {
         for (int i = 0; i < 7; i++) {
             for (int x = 0; x < players.size(); x++) {
@@ -84,7 +96,6 @@ public class Field {
         setOnFieldStack(drawCard());
     }
 
-    //TODO: Not sure if needed.
     public ArrayList<Card> getDrawStack() {
         return drawStack;
     }

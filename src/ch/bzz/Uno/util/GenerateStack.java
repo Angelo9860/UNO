@@ -6,9 +6,21 @@ import ch.bzz.Uno.model.Card;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+/**
+ * @author : Angelo Lachnit
+ * @version : 1.0
+ * @description: Generates a stack
+ */
+
 public class GenerateStack {
 
     private ArrayList<Card> stack = new ArrayList<>();
+
+    /**
+     *
+     * @return returns a new generated stack to draw for
+     */
 
     public  ArrayList<Card> generateStack() {
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 /**
  * @author : Angelo Lachnit
  * @version : 1.0
+ * @description: Controlles the every action that goes to the UI and comes from the UI
  */
 
 public class Controller implements ControllerInterface {
@@ -31,6 +32,10 @@ public class Controller implements ControllerInterface {
     private static Color defaultColor = new Color(238, 238, 238);
 
 
+
+    /**
+     * @param field is the model thats controlled
+     */
     public Controller(Field field) {
         this.field = field;
         validator = new Validator();
@@ -54,6 +59,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
+    /**
+     * @description when game has been started it generates a draw stack, sets the current player hands out the cards and sets the first card
+     */
     public void startGameHasBeenPressed() {
         resetHands();
         field.setDrawStack(ShuffleDeck.shuffleDeck(stack.generateStack()));
@@ -79,6 +87,7 @@ public class Controller implements ControllerInterface {
      * @param card The card which the player wants to lay down
      * @param wishColor Default is pink. If a player wishes a color it will be the color that has been wished
      * @return is a boolean if the card was valid. Valid: true. Invalid: false
+     * @description: handles the logic when a player wants to laydown a card. It checks for if there is a wish and sets the card.
      */
 
     public boolean layDownCardHasBeenPressed(Card card, Color wishColor) {
@@ -127,6 +136,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
+
     public void resetWishColor() {
         wished = Color.pink;
     }
@@ -137,6 +147,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
+    /**
+     * @description: sets the next Player
+     */
     public void nextHasBeenPressed() {
         if (field.getCurrentlyPlaying().getHand().size() == 1) {
             if (!validator.getUnoStatus()) {
@@ -167,7 +180,7 @@ public class Controller implements ControllerInterface {
     }
 
     /**
-     * @return
+     * @return is the card which is on top
      */
     public Card cardOnField() {
         return field.getCurrentCard();
@@ -190,20 +203,34 @@ public class Controller implements ControllerInterface {
 
     }
 
+    /**
+     *
+     * @param card is the card which has been layed down and can be removed from the players hand
+     */
     private void removeSetCardFromPlayerHand(Card card) {
         field.getPlayers().get(field.getCurrentlyPlaying().getId()).removeCard(card);
     }
 
+    /**
+     *
+     * @return retruns an Arraylist of all players
+     */
     public ArrayList<Player> getPlayers(){
         return field.getPlayers();
     }
 
+    /**
+     * description redirects the points calculation
+     */
     public void calculatePoints(){
         field.setPlayers(points.calculatePoints(field.getPlayers(), getCurrentlyPlaying()));
 
         resetAllFlags();
     }
 
+    /**
+     * description resets all flags for the controller
+     */
     public void resetAllFlags(){
         validator.reset();
         setSkip(false);
@@ -213,6 +240,9 @@ public class Controller implements ControllerInterface {
         resetWishColor();
     }
 
+    /**
+     * description resets the hands before the start of a new round
+     */
     public void resetHands(){
         for(int i = 0; i < field.getPlayers().size(); i++ ){
             field.getPlayers().get(i).resetHand();

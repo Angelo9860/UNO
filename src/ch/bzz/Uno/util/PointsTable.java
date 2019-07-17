@@ -5,11 +5,25 @@ import ch.bzz.Uno.model.Player;
 
 import java.util.ArrayList;
 
+/**
+ * @author : Angelo Lachnit
+ * @version : 1.0
+ * @description: Calculates the points
+ */
+
 public class PointsTable {
 
     public PointsTable(){
 
     }
+
+    /**
+     *
+     * @param players
+     * @param wonRound
+     * description calculates the points for the player that has won the round and assigns it to the player
+     * @return returns an arraylist of players and which will be assigned in the field.
+     */
     public ArrayList<Player> calculatePoints(ArrayList<Player> players, Player wonRound){
         for(int i = 0; i < players.size(); i++){
             if(wonRound.getId() != players.get(i).getId()){

@@ -5,7 +5,11 @@ import java.util.Collections;
 public class ShuffleDeck {
 
 
-
+    /**
+     *
+     * @param cardsToShuffle cards to shuffle
+     * @return returns a shuffled stack
+     */
     public static ArrayList<Card> shuffleDeck(ArrayList<Card> cardsToShuffle){
         ArrayList<Card> shuffeled = cardsToShuffle;
         Collections.shuffle(cardsToShuffle);
